@@ -1,0 +1,27 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	font-family: 'Raleway', sans-serif;
+	color: #000;
+	text-decoration: none;
+
+	transition: all 250ms ease;
+	-webkit-transition: all 250ms ease;
+	-moz-transition: all 250ms ease;
+	-ms-transition: all 250ms ease;
+	-o-transition: all 250ms ease;
+}
+
+body {
+	position: relative;
+}
+
+.main {
+	width: 99vw;
+	margin: 0 auto;
+	padding: 30px 0;
+
+	background-color: rgba(236, 223, 205, 0.863);
+}

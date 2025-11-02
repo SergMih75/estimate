@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/dataset.css">
+		<link rel="stylesheet" href="./css/popup.css">
+		<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="main">
+			<div class="dataset">
+				<h1 class="dataset__title">Справочник объектов (постов) охраны</h1>
+				<table class="dataset__table">
+				</table>
+			</div>
+			<nav class="nav">
+				<a class="nav__btn nav__btn-add" href="">Добавить</a>
+			</nav>
+		</div>
+
+		<div class="popup">
+			<div class="popup__add">
+				<p class="add__close">Закрыть</p>
+				<h2 class="add__title">Новый объект</h2>
+				<form class="add-form" action="#" method="GET">
+					<div class="accordion">
+						<div class="accordion__item">
+							<label class="accordion__item-trigger" for="general">Основные сведения об объекте (посту) охраны</label>
+							<input id="general" class="accordion__item-trigger-input" type="checkbox">
+							<div class="accordion__item-content">
+								<label >Объект (пост)
+									<input class="add-data" id="objName" type="text" required>
+								</label>
+								<label >Адрес
+									<input class="add-data" id="objAddress" type="text">
+								</label>
+								<label >Контактное лицо
+									<input class="add-data" id="objRespPerson" type="tel">
+								</label>
+								<label >Телефон
+									<input class="add-data" id="objRespPersonTel" type="tel">
+								</label> 
+							</div>
+						</div>
+
+						<div class="accordion__item">
+							<label class="accordion__item-trigger" for="contract">Ежемесячные расходы по объекту</label>
+							<input id="contract" class="accordion__item-trigger-input" type="checkbox">
+							<div class="accordion__item-content">
+								<label >Число охранников на объекте (посту), сотр.
+									<input class="add-data" id="GuardNum" type="number">
+								</label>
+								<label >Зарплата одного охранника, руб./мес.
+									<input class="add-data" id="GuardSalary" type="number">
+								</label>
+								<label >Ставка взносов на соц.страхование, %
+									<input class="add-data" id="GuardSoc" type="number">
+								</label>
+								<label >Содержание АУП контроля над объектом, руб./мес.
+									<input class="add-data" id="AUP" type="number">
+								</label>
+								<label >Расходы на моб.связь по объекту, руб./мес.
+									<input class="add-data" id="tel" type="number">
+								</label>
+								<label >Расходы на канцелярию, руб./мес.
+									<input class="add-data" id="stationery" type="number">
+								</label>
+								<label >Прочие расходы, руб./мес.
+									<input class="add-data" id="other" type="number">
+								</label>
+							</div>
+						</div>
+
+						<div class="accordion__item">
+							<label class="accordion__item-trigger" for="bank">Годовые расходы по объекту (посту)</label>
+							<input id="bank" class="accordion__item-trigger-input" type="checkbox">
+							<div class="accordion__item-content">
+								<label >Расходы на сан.-быт.потребности, руб./год
+									<input class="add-data" id="sanFac" type="number">
+								</label>
+								<label >Форменная одежда 1-го охр. осенне-зимняя, руб./год
+									<input class="add-data" id="uniformWinter" type="number">
+								</label>
+								<label >Форменная одежда 1-го охр. весенне-летняя, руб./год
+									<input class="add-data" id="uniformSummer" type="number">
+								</label>
+								<label >Спец.средства объекта (поста), руб./год
+									<input class="add-data" id="specialTools" type="number">
+								</label>
+								<label >Служебная документация, руб./год
+									<input class="add-data" id="documentation" type="number">
+								</label>
+								<label >Средства моб.связи, руб./год
+									<input class="add-data" id="adsVacancy" type="number">
+								</label>
+								<label >Размещение объявл.по вакансиям, руб./год
+									<input class="add-data" id="telTools" type="number">
+								</label>
+								<label >Норма  прибыли, % от суммы расходов объекта (поста)
+									<input class="add-data" id="profit" type="number">
+								</label>
+								<label >Ставка налоговая, %
+									<input class="add-data" id="tax" type="number">
+								</label>
+							</div>
+						</div>
+
+						<div class="accordion__item">
+							<label class="accordion__item-trigger" for="comment">Справочные данные и комментарии</label>
+							<input id="comment" class="accordion__item-trigger-input" type="checkbox">
+							<div class="accordion__item-content">
+								<label >Реальная зарплата охранника по отрасли (15/15), руб./мес.
+									<input class="add-data" id="salaryBranch" type="number">
+								</label>
+								<label >Реальная зарплата охранника по отрасли (2/2, 4/4 и т.д.)
+									<input class="add-data" id="salaryChart" type="number">
+								</label>
+								<textarea class="add-data" name="" id="objNote" cols="300" rows="10" wrap="hard"></textarea>
+							</div>
+						</div>
+					</div>
+					<input class="add__btn" type="submit">
+				</form>
+			</div>
+		</div>
+
+		<div class="popup-card">
+			<div class="card">
+				<p class="card__close">Закрыть</p>
+				<div class="dataset-card">
+					<h1 class="dataset__title">СМЕТА РАСХОДОВ</h1>
+					<p class="dataset__subtitle">по предоставлению охранных услуг по объекту (посту)</p>
+					<p class="obj__name"></p>
+					<p class="obj__address"></p>
+					<p class="guard__num"></p>
+					<p class="salary__branch"></p>
+					<p class="salary__chart"></p>
+					<table class="dataset__table-card">
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<script  src="./js/main.js"></script>
+	</body>
+</html>
