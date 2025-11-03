@@ -164,13 +164,23 @@ textarea:focus {
 }
 
 .add__btn {
-	display: inline-block;
+	/* display: inline-block; */
+	width: 300px;
+	padding: 10px 0;
+	margin: 0 auto;
 	cursor: pointer;
 	box-shadow: -3px 3px 8px #1d1919c0;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
 }
 
 .add__btn:focus {
 	box-shadow: none;
+}
+
+.add__btn:hover {
+	background-color: #76be5e;
 }
 
 .accordion__item {
