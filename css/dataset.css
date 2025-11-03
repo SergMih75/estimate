@@ -128,7 +128,9 @@
     background-color: aqua;
 }
 
-.del__btn {
+
+.del__btn,
+.edit__btn {
     padding: 2px 4px;
     border: none;
     font-size: 12px;
@@ -139,6 +141,7 @@
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
+    cursor: pointer;
 }
 
 .del__btn:hover {
@@ -148,6 +151,16 @@
     box-shadow: 0 0 5px #f71707;
 }
 
+.edit__btn {
+    color: #fff;
+    background-color: #adacac;
+}
+
+.edit__btn:hover {
+    /* color: #fff; */
+    background-color: #7c7979;
+}
+
 .estimate td {
     padding-left: 10px;
     text-align: left;
@@ -155,5 +168,8 @@
 
 .estimate__total  td {
     font-weight: 700;
+}
 
+#key_id {
+    display: none;
 }

@@ -163,7 +163,8 @@ textarea:focus {
 	box-shadow: 0 0 5px #7a7878c0;
 }
 
-.add__btn {
+.add__btn,
+.edit__data {
 	/* display: inline-block; */
 	width: 300px;
 	padding: 10px 0;
@@ -175,12 +176,17 @@ textarea:focus {
 	text-transform: uppercase;
 }
 
-.add__btn:focus {
+.add__btn:focus,
+.edit__data:focus {
 	box-shadow: none;
 }
 
 .add__btn:hover {
 	background-color: #76be5e;
+}
+
+.edit__data:hover {
+	background-color: #d5ef6e;
 }
 
 .accordion__item {

@@ -25,18 +25,19 @@
 		<div class="popup">
 			<div class="popup__add">
 				<p class="add__close">Закрыть</p>
-				<h2 class="add__title">Новый объект</h2>
+				<h2 class="add__title">Сметные данные объекта (поста) охраны</h2>
 				<form class="add-form" action="#" method="GET">
 					<div class="accordion">
 						<div class="accordion__item">
 							<label class="accordion__item-trigger" for="general">Основные сведения об объекте (посту) охраны</label>
 							<input id="general" class="accordion__item-trigger-input" type="checkbox">
 							<div class="accordion__item-content">
+								<input id="key_id" class="add-data-hidden" type="number">
 								<label >Объект (пост)
 									<input class="add-data" id="objName" type="text" required value="Название объекта">
 								</label>
 								<label >Адрес
-									<input class="add-data" id="objAddress" type="text" value="Название объекта"value="Адрес объекта">
+									<input class="add-data" id="objAddress" type="text" value="Адрес объекта">
 								</label>
 								<label >Контактное лицо
 									<input class="add-data" id="objRespPerson" type="text" value="Контактное лицо">
@@ -124,6 +125,7 @@
 						</div>
 					</div>
 					<button class="add__btn">Создать новую запись</button>
+					<button class="edit__data">Редактировать существующую запись</button>
 				</form>
 			</div>
 		</div>

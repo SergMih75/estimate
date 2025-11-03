@@ -1,8 +1,11 @@
 const navBtn = document.querySelectorAll('.nav__btn')
 const popup = document.querySelector('.popup')
 const addBtn = document.querySelector('.add__btn')
+const editData = document.querySelector('.edit__data')
 const dataAdd = document.querySelectorAll('.data-add')
+
 let newItem = {}
+let editItem = {}
 // GOOD Адрес базы данных
 const baseUrl = 'https://69066b9bee3d0d14c135c505.mockapi.io/estimate'
 
@@ -34,6 +37,7 @@ function datasetRender(dataGet) {
 		<th>Контактное лицо</th>
 		<th>Телефон</th>
 		<th>Примечания</th>
+		<th>РЕДАКТИРОВАТЬ</th>
 		<th>УДАЛИТЬ</th>
     `
 	document.querySelector('.dataset__table').append(headRow)
@@ -47,6 +51,7 @@ function datasetRender(dataGet) {
 		<td>${item.objRespPerson}</td>
 		<td>${item.objRespPersonTel}</td>
 		<td>${item.objNote}</td>
+		<td><button class="edit__btn">Редактировать</button></td>
 		<td><button class="del__btn">УДАЛИТЬ</button></td>
 	`
 		document.querySelector('.dataset__table').append(row)
@@ -83,7 +88,6 @@ addBtn.addEventListener('click', function () {
 		salaryChart: document.getElementById('salaryChart').value,
 		objNote: document.getElementById('objNote').value,
 	}
-	console.log(newItem)
 
 	postQuestions(newItem)
 	dataAdd.forEach(dataAdd => {
@@ -100,10 +104,10 @@ addBtn.addEventListener('click', function () {
 function postQuestions(newItem) {
 	fetch(baseUrl, {
 		method: 'POST',
+		headers: { 'content-type': 'application/json' },
 		body: JSON.stringify(newItem),
 		headers: { 'content-type': 'application/json' },
 	})
-	.then(console.log(newItem))
 		.then(response => response.json())
 		.catch(error => console.error(error))
 }
@@ -112,11 +116,9 @@ function postQuestions(newItem) {
 let datasetTable = document.querySelector('.dataset__table')
 
 datasetTable.addEventListener('click', function (e) {
-	if (e.target.tagName === 'BUTTON') {
+	if (e.target.tagName === 'BUTTON' && e.target.classList == 'del__btn') {
 		let url =
 			baseUrl + '/' + e.target.parentNode.parentNode.childNodes[1].innerHTML
-		// console.log(e.target.tagName);
-		// console.log(url)
 
 		fetch(url, {
 			method: 'DELETE',
@@ -136,6 +138,34 @@ popup.addEventListener('click', e => {
 	if (e.target.classList.contains('add__close')) {
 		document.querySelector('.popup__add').classList.remove('popup__add-active')
 		popup.classList.remove('popup-active')
+
+		document.getElementById('objName').value = 'Новый объект (пост) охраны'
+		document.getElementById('objAddress').value = 'Адрес объекта'
+		document.getElementById('objRespPerson').value = 'Контактное лицо'
+		document.getElementById('objRespPersonTel').value = '8(960)000-00-00'
+
+		document.getElementById('GuardNum').value = 0
+		document.getElementById('GuardSalary').value = 0
+		document.getElementById('GuardSoc').value = 0
+		document.getElementById('AUP').value = 0
+		document.getElementById('tel').value = 0
+		document.getElementById('stationery').value = 0
+		document.getElementById('other').value = 0
+
+		document.getElementById('sanFac').value = 0
+		document.getElementById('uniformWinter').value = 0
+		document.getElementById('uniformSummer').value = 0
+		document.getElementById('specialTools').value = 0
+		document.getElementById('documentation').value = 0
+		document.getElementById('adsVacancy').value = 0
+		document.getElementById('telTools').value = 0
+		document.getElementById('profit').value = 15
+		document.getElementById('tax').value = 6
+
+		document.getElementById('salaryBranch').value = 0
+		document.getElementById('salaryChart').value = 0
+		document.getElementById('objNote').value = ''
+
 		getQuestion()
 	}
 })
@@ -157,6 +187,8 @@ navBtn.forEach(item => {
 		popup.classList.add('popup-active')
 		if (item.classList.contains('nav__btn-add')) {
 			document.querySelector('.popup__add').classList.add('popup__add-active')
+			addBtn.style.display = 'block'
+			editData.style.display = 'none'
 		}
 	})
 })
@@ -230,27 +262,43 @@ function datasetRenderCard(dataGetCard) {
 	let row15 = document.createElement('tr')
 	let row16 = document.createElement('tr')
 
-	row1.classList.add("estimate")
-	row2.classList.add("estimate")
-	row3.classList.add("estimate")
-	row4.classList.add("estimate")
-	row5.classList.add("estimate")
-	row6.classList.add("estimate")
-	row7.classList.add("estimate")
-	row8.classList.add("estimate")
-	row9.classList.add("estimate")
-	row10.classList.add("estimate")
-	row11.classList.add("estimate")
-	row12.classList.add("estimate")
-	row13.classList.add("estimate")
-	row14.classList.add("estimate")
-	row15.classList.add("estimate")
-	row16.classList.add("estimate")
-	row16.classList.add("estimate__total")
+	row1.classList.add('estimate')
+	row2.classList.add('estimate')
+	row3.classList.add('estimate')
+	row4.classList.add('estimate')
+	row5.classList.add('estimate')
+	row6.classList.add('estimate')
+	row7.classList.add('estimate')
+	row8.classList.add('estimate')
+	row9.classList.add('estimate')
+	row10.classList.add('estimate')
+	row11.classList.add('estimate')
+	row12.classList.add('estimate')
+	row13.classList.add('estimate')
+	row14.classList.add('estimate')
+	row15.classList.add('estimate')
+	row16.classList.add('estimate')
+	row16.classList.add('estimate__total')
 
-	let varCost = (dataGetCard.GuardNum * dataGetCard.GuardSalary*12 + dataGetCard.GuardNum * dataGetCard.GuardSalary*(dataGetCard.GuardSoc / 100)*12 + dataGetCard.aup*12 + dataGetCard.tel*12 + dataGetCard.stationery*12 + dataGetCard.other*12)
+	let varCost =
+		dataGetCard.GuardNum * dataGetCard.GuardSalary * 12 +
+		dataGetCard.GuardNum *
+			dataGetCard.GuardSalary *
+			(dataGetCard.GuardSoc / 100) *
+			12 +
+		dataGetCard.aup * 12 +
+		dataGetCard.tel * 12 +
+		dataGetCard.stationery * 12 +
+		dataGetCard.other * 12
 
-	let fixedCost = (+dataGetCard.sanFac + (dataGetCard.GuardNum * dataGetCard.uniformWinter) + (dataGetCard.GuardNum * dataGetCard.uniformSummer) + (+dataGetCard.specialTools) + (+dataGetCard.documentation) + (+dataGetCard.adsVacancy) + (+dataGetCard.telTools))
+	let fixedCost =
+		+dataGetCard.sanFac +
+		dataGetCard.GuardNum * dataGetCard.uniformWinter +
+		dataGetCard.GuardNum * dataGetCard.uniformSummer +
+		+dataGetCard.specialTools +
+		+dataGetCard.documentation +
+		+dataGetCard.adsVacancy +
+		+dataGetCard.telTools
 
 	row1.innerHTML = `
        	<td>Зарплата охранникам с учетом повышения МРОТ</td>
@@ -259,121 +307,107 @@ function datasetRenderCard(dataGetCard) {
 	`
 	row2.innerHTML = `
        	<td>Отчисления на соц.страхование и обеспечение</td>
-		<td>${
-			(dataGetCard.GuardNum *
+		<td>${(
+			dataGetCard.GuardNum *
 			dataGetCard.GuardSalary *
-			(dataGetCard.GuardSoc / 100)).toFixed(2)
-		}</td>
-		<td>${
-			(((dataGetCard.GuardNum * dataGetCard.GuardSalary) / 100) *
+			(dataGetCard.GuardSoc / 100)
+		).toFixed(2)}</td>
+		<td>${(
+			((dataGetCard.GuardNum * dataGetCard.GuardSalary) / 100) *
 			dataGetCard.GuardSoc *
-			12).toFixed(2)
-		}</td>
+			12
+		).toFixed(2)}</td>
 	`
-		row3.innerHTML = `
+	row3.innerHTML = `
        	<td>Содержание АУП контроля над объектом</td>
-		<td>${
-			(dataGetCard.aup*1).toFixed(2)
-		}</td>
-		<td>${
-			(dataGetCard.aup *
-			12).toFixed(2)}</td>
+		<td>${(dataGetCard.aup * 1).toFixed(2)}</td>
+		<td>${(dataGetCard.aup * 12).toFixed(2)}</td>
 	`
 	row4.innerHTML = `
        	<td>Расходы на моб.связь объекта</td>
-		<td>${
-			(dataGetCard.tel*1).toFixed(2)
-		}</td>
-		<td>${
-			(dataGetCard.tel *
-			12).toFixed(2)
-		}</td>
+		<td>${(dataGetCard.tel * 1).toFixed(2)}</td>
+		<td>${(dataGetCard.tel * 12).toFixed(2)}</td>
 	`
 	row5.innerHTML = `
        	<td>Расходы на канцтовары</td>
-		<td>${
-			(dataGetCard.stationery*1).toFixed(2)
-		}</td>
-		<td>${
-			(dataGetCard.stationery *
-			12).toFixed(2)
-		}</td>
+		<td>${(dataGetCard.stationery * 1).toFixed(2)}</td>
+		<td>${(dataGetCard.stationery * 12).toFixed(2)}</td>
 	`
 	row6.innerHTML = `
        	<td>Прочие расходы по объекту (посту) охраны</td>
-		<td>${
-			(dataGetCard.other*1).toFixed(2)
-		}</td>
-		<td>${
-			(dataGetCard.other *
-			12).toFixed(2)
-		}</td>
+		<td>${(dataGetCard.other * 1).toFixed(2)}</td>
+		<td>${(dataGetCard.other * 12).toFixed(2)}</td>
 	`
 	row7.innerHTML = `
        	<td>Санитарно-бытовые расходы по объекту (посту)</td>
-		<td>${
-			(dataGetCard.sanFac/12).toFixed(2)
-		}</td>
-		<td>${(dataGetCard.sanFac*1).toFixed(2)}</td>
+		<td>${(dataGetCard.sanFac / 12).toFixed(2)}</td>
+		<td>${(dataGetCard.sanFac * 1).toFixed(2)}</td>
 	`
 	row8.innerHTML = `
        	<td>Обеспечение охранников форменной одеждой осенне-зимнего периода</td>
-		<td>${(dataGetCard.GuardNum * dataGetCard.uniformWinter/12).toFixed(2)}</td>
+		<td>${((dataGetCard.GuardNum * dataGetCard.uniformWinter) / 12).toFixed(2)}</td>
 		<td>${(dataGetCard.GuardNum * dataGetCard.uniformWinter).toFixed(2)}</td>
 	`
 	row9.innerHTML = `
        	<td>Обеспечение охранников форменной одеждой весенне-летнего периода</td>
-		<td>${(dataGetCard.GuardNum * dataGetCard.uniformSummer/12).toFixed(2)}</td>
+		<td>${((dataGetCard.GuardNum * dataGetCard.uniformSummer) / 12).toFixed(2)}</td>
 		<td>${(dataGetCard.GuardNum * dataGetCard.uniformSummer).toFixed(2)}</td>
 	`
 	row10.innerHTML = `
        	<td>Обеспечение объекта специальными средствами (металлодетекторы и т.д.)</td>
-		<td>${(dataGetCard.specialTools/12).toFixed(2)}</td>
-		<td>${(dataGetCard.specialTools*1).toFixed(2)}</td>
+		<td>${(dataGetCard.specialTools / 12).toFixed(2)}</td>
+		<td>${(dataGetCard.specialTools * 1).toFixed(2)}</td>
 	`
 	row11.innerHTML = `
        	<td>Обеспечение объекта книгами служебной документацией</td>
-		<td>${(dataGetCard.documentation/12).toFixed(2)}</td>
-		<td>${(dataGetCard.documentation*1).toFixed(2)}</td>
+		<td>${(dataGetCard.documentation / 12).toFixed(2)}</td>
+		<td>${(dataGetCard.documentation * 1).toFixed(2)}</td>
 	`
 	row12.innerHTML = `
        	<td>Расходы на объявления по вакансиям</td>
-		<td>${(dataGetCard.adsVacancy/12).toFixed(2)}</td>
-		<td>${(dataGetCard.adsVacancy*1).toFixed(2)}</td>
+		<td>${(dataGetCard.adsVacancy / 12).toFixed(2)}</td>
+		<td>${(dataGetCard.adsVacancy * 1).toFixed(2)}</td>
 	`
 	row13.innerHTML = `
        	<td>Обеспечение объекта (поста) средствами связи</td>
-		<td>${(dataGetCard.telTools/12).toFixed(2)}</td>
-		<td>${(dataGetCard.telTools*1).toFixed(2)}</td>
+		<td>${(dataGetCard.telTools / 12).toFixed(2)}</td>
+		<td>${(dataGetCard.telTools * 1).toFixed(2)}</td>
 	`
-
 
 	row14.innerHTML = `
        	<td>Прибыль</td>
-		<td>${
-			(((varCost + fixedCost) * (dataGetCard.profit/100))/12).toFixed(2)
-		}</td>
-		<td>${
-			((varCost + fixedCost) * (dataGetCard.profit/100)).toFixed(2)
-		}</td>
+		<td>${(((varCost + fixedCost) * (dataGetCard.profit / 100)) / 12).toFixed(
+			2
+		)}</td>
+		<td>${((varCost + fixedCost) * (dataGetCard.profit / 100)).toFixed(2)}</td>
 	`
 	row15.innerHTML = `
        	<td>Налоги</td>
-		<td>${
-			(((varCost + fixedCost) * (1+dataGetCard.profit/100)*(dataGetCard.tax/100))/12).toFixed(2)
-		}</td>
-		<td>${
-			((varCost + fixedCost) * (1+dataGetCard.profit/100)*(dataGetCard.tax/100)).toFixed(2)
-		}</td>
+		<td>${(
+			((varCost + fixedCost) *
+				(1 + dataGetCard.profit / 100) *
+				(dataGetCard.tax / 100)) /
+			12
+		).toFixed(2)}</td>
+		<td>${(
+			(varCost + fixedCost) *
+			(1 + dataGetCard.profit / 100) *
+			(dataGetCard.tax / 100)
+		).toFixed(2)}</td>
 	`
 	row16.innerHTML = `
        	<td>ИТОГО ПО СМЕТЕ</td>
-		<td>${
-			(((varCost + fixedCost) * (1+dataGetCard.profit/100)*(1+dataGetCard.tax/100))/12).toFixed(2)
-		}</td>
-		<td>${
-			((varCost + fixedCost) * (1+dataGetCard.profit/100)*(1+dataGetCard.tax/100)).toFixed(2)
-		}</td>
+		<td>${(
+			((varCost + fixedCost) *
+				(1 + dataGetCard.profit / 100) *
+				(1 + dataGetCard.tax / 100)) /
+			12
+		).toFixed(2)}</td>
+		<td>${(
+			(varCost + fixedCost) *
+			(1 + dataGetCard.profit / 100) *
+			(1 + dataGetCard.tax / 100)
+		).toFixed(2)}</td>
 	`
 
 	document.querySelector('.dataset__table-card').append(row1)
@@ -392,4 +426,115 @@ function datasetRenderCard(dataGetCard) {
 	document.querySelector('.dataset__table-card').append(row14)
 	document.querySelector('.dataset__table-card').append(row15)
 	document.querySelector('.dataset__table-card').append(row16)
+}
+
+// GOOD Редактирование данных контрагента (Заполнение имеющихся сведений в поля карточки ввода)
+datasetTable.addEventListener('click', function (e) {
+	if (e.target.tagName === 'BUTTON' && e.target.classList == 'edit__btn') {
+		let urlEditCard =
+			baseUrl + '/' + e.target.parentNode.parentNode.childNodes[1].innerHTML
+
+		getQuestionEditCard()
+
+		function getQuestionEditCard() {
+			fetch(urlEditCard, {
+				method: 'GET',
+				headers: { 'content-type': 'application/json' },
+			})
+				.then(response => response.json())
+
+				.then(dataGetEditCard => datasetRenderEditCard(dataGetEditCard))
+
+				.catch(error => console.error(error))
+		}
+	}
+})
+
+// GOOD Функция заполнения карточки данными из базы данных для редактирования
+function datasetRenderEditCard(dataGetEditCard) {
+	document.querySelector('.popup').classList.add('popup-active')
+	document.querySelector('.popup__add').classList.add('popup__add-active')
+
+	addBtn.style.display = 'none'
+	editData.style.display = 'block'
+
+	document.getElementById('key_id').value = dataGetEditCard.id
+	document.getElementById('objName').value = dataGetEditCard.objName
+	document.getElementById('objAddress').value = dataGetEditCard.objAddress
+	document.getElementById('objRespPerson').value = dataGetEditCard.objRespPerson
+	document.getElementById('objRespPersonTel').value =
+		dataGetEditCard.objRespPersonTel
+
+	document.getElementById('GuardNum').value = dataGetEditCard.GuardNum
+	document.getElementById('GuardSalary').value = dataGetEditCard.GuardSalary
+	document.getElementById('GuardSoc').value = dataGetEditCard.GuardSoc
+	document.getElementById('AUP').value = dataGetEditCard.aup
+	document.getElementById('tel').value = dataGetEditCard.tel
+	document.getElementById('stationery').value = dataGetEditCard.stationery
+	document.getElementById('other').value = dataGetEditCard.other
+
+	document.getElementById('sanFac').value = dataGetEditCard.sanFac
+	document.getElementById('uniformWinter').value = dataGetEditCard.uniformWinter
+	document.getElementById('uniformSummer').value = dataGetEditCard.uniformSummer
+	document.getElementById('specialTools').value = dataGetEditCard.specialTools
+	document.getElementById('documentation').value = dataGetEditCard.documentation
+	document.getElementById('adsVacancy').value = dataGetEditCard.adsVacancy
+	document.getElementById('telTools').value = dataGetEditCard.telTools
+	document.getElementById('profit').value = dataGetEditCard.profit
+	document.getElementById('tax').value = dataGetEditCard.tax
+
+	document.getElementById('salaryBranch').value = dataGetEditCard.salaryBranch
+	document.getElementById('salaryChart').value = dataGetEditCard.salaryChart
+	document.getElementById('objNote').value = dataGetEditCard.objNote
+}
+
+// Обновление карточки (формирование обновлённых данных)
+editData.addEventListener('click', function () {
+	editItem = {
+		id: document.getElementById('key_id').value,
+		objName: document.getElementById('objName').value,
+		objAddress: document.getElementById('objAddress').value,
+		objRespPerson: document.getElementById('objRespPerson').value,
+		objRespPersonTel: document.getElementById('objRespPersonTel').value,
+
+		GuardNum: document.getElementById('GuardNum').value,
+		GuardSalary: document.getElementById('GuardSalary').value,
+		GuardSoc: document.getElementById('GuardSoc').value,
+		aup: document.getElementById('AUP').value,
+		tel: document.getElementById('tel').value,
+		stationery: document.getElementById('stationery').value,
+		other: document.getElementById('other').value,
+
+		sanFac: document.getElementById('sanFac').value,
+		uniformWinter: document.getElementById('uniformWinter').value,
+		uniformSummer: document.getElementById('uniformSummer').value,
+		specialTools: document.getElementById('specialTools').value,
+		documentation: document.getElementById('documentation').value,
+		adsVacancy: document.getElementById('adsVacancy').value,
+		telTools: document.getElementById('telTools').value,
+		profit: document.getElementById('profit').value,
+		tax: document.getElementById('tax').value,
+
+		salaryBranch: document.getElementById('salaryBranch').value,
+		salaryChart: document.getElementById('salaryChart').value,
+		objNote: document.getElementById('objNote').value,
+	}
+
+	postEditData(editItem)
+
+	document.querySelector('.popup__add').classList.remove('popup__add-active')
+	document.querySelector('.popup').classList.remove('popup-active')
+	getQuestion()
+})
+
+// GOOD Отправка изменённых данных по выбранному клиенту на сервер
+function postEditData(editItem) {
+	console.log(editItem.id)
+	fetch(baseUrl + '/' + editItem.id, {
+		method: 'PUT',
+		headers: { 'content-type': 'application/json' },
+		body: JSON.stringify(editItem),
+	})
+		.then(response => response.json())
+		.catch(error => console.error(error))
 }
