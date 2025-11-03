@@ -53,7 +53,7 @@ function datasetRender(dataGet) {
 	})
 }
 
-// -GOOD Запись нового объекта и сметы по нему (формирование данных для передачи на сервер)
+// GOOD Запись нового объекта и сметы по нему (формирование данных для передачи на сервер)
 addBtn.addEventListener('click', function () {
 	newItem = {
 		objName: document.getElementById('objName').value,

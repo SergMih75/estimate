@@ -33,16 +33,16 @@
 							<input id="general" class="accordion__item-trigger-input" type="checkbox">
 							<div class="accordion__item-content">
 								<label >Объект (пост)
-									<input class="add-data" id="objName" type="text" required>
+									<input class="add-data" id="objName" type="text" required value="Название объекта">
 								</label>
 								<label >Адрес
-									<input class="add-data" id="objAddress" type="text">
+									<input class="add-data" id="objAddress" type="text" value="Название объекта"value="Адрес объекта">
 								</label>
 								<label >Контактное лицо
-									<input class="add-data" id="objRespPerson" type="tel">
+									<input class="add-data" id="objRespPerson" type="text" value="Контактное лицо">
 								</label>
 								<label >Телефон
-									<input class="add-data" id="objRespPersonTel" type="tel">
+									<input class="add-data" id="objRespPersonTel" type="tel" value="8(000)000-00-00">
 								</label> 
 							</div>
 						</div>
@@ -52,25 +52,25 @@
 							<input id="contract" class="accordion__item-trigger-input" type="checkbox">
 							<div class="accordion__item-content">
 								<label >Число охранников на объекте (посту), сотр.
-									<input class="add-data" id="GuardNum" type="number">
+									<input class="add-data" id="GuardNum" type="number" value="0">
 								</label>
 								<label >Зарплата одного охранника, руб./мес.
-									<input class="add-data" id="GuardSalary" type="number">
+									<input class="add-data" id="GuardSalary" type="number" value="0">
 								</label>
 								<label >Ставка взносов на соц.страхование, %
-									<input class="add-data" id="GuardSoc" type="number">
+									<input class="add-data" id="GuardSoc" type="number" value="30">
 								</label>
 								<label >Содержание АУП контроля над объектом, руб./мес.
-									<input class="add-data" id="AUP" type="number">
+									<input class="add-data" id="AUP" type="number" value="0">
 								</label>
 								<label >Расходы на моб.связь по объекту, руб./мес.
-									<input class="add-data" id="tel" type="number">
+									<input class="add-data" id="tel" type="number" value="0">
 								</label>
 								<label >Расходы на канцелярию, руб./мес.
-									<input class="add-data" id="stationery" type="number">
+									<input class="add-data" id="stationery" type="number" value="0">
 								</label>
 								<label >Прочие расходы, руб./мес.
-									<input class="add-data" id="other" type="number">
+									<input class="add-data" id="other" type="number" value="0">
 								</label>
 							</div>
 						</div>
@@ -80,31 +80,31 @@
 							<input id="bank" class="accordion__item-trigger-input" type="checkbox">
 							<div class="accordion__item-content">
 								<label >Расходы на сан.-быт.потребности, руб./год
-									<input class="add-data" id="sanFac" type="number">
+									<input class="add-data" id="sanFac" type="number" value="0">
 								</label>
 								<label >Форменная одежда 1-го охр. осенне-зимняя, руб./год
-									<input class="add-data" id="uniformWinter" type="number">
+									<input class="add-data" id="uniformWinter" type="number" value="0">
 								</label>
 								<label >Форменная одежда 1-го охр. весенне-летняя, руб./год
-									<input class="add-data" id="uniformSummer" type="number">
+									<input class="add-data" id="uniformSummer" type="number" value="0">
 								</label>
 								<label >Спец.средства объекта (поста), руб./год
-									<input class="add-data" id="specialTools" type="number">
+									<input class="add-data" id="specialTools" type="number" value="0">
 								</label>
 								<label >Служебная документация, руб./год
-									<input class="add-data" id="documentation" type="number">
+									<input class="add-data" id="documentation" type="number" value="0">
 								</label>
 								<label >Средства моб.связи, руб./год
-									<input class="add-data" id="adsVacancy" type="number">
+									<input class="add-data" id="adsVacancy" type="number" value="0">
 								</label>
 								<label >Размещение объявл.по вакансиям, руб./год
-									<input class="add-data" id="telTools" type="number">
+									<input class="add-data" id="telTools" type="number" value="0">
 								</label>
 								<label >Норма  прибыли, % от суммы расходов объекта (поста)
-									<input class="add-data" id="profit" type="number">
+									<input class="add-data" id="profit" type="number" value="15">
 								</label>
 								<label >Ставка налоговая, %
-									<input class="add-data" id="tax" type="number">
+									<input class="add-data" id="tax" type="number" value="6">
 								</label>
 							</div>
 						</div>
@@ -114,12 +114,12 @@
 							<input id="comment" class="accordion__item-trigger-input" type="checkbox">
 							<div class="accordion__item-content">
 								<label >Реальная зарплата охранника по отрасли (15/15), руб./мес.
-									<input class="add-data" id="salaryBranch" type="number">
+									<input class="add-data" id="salaryBranch" type="number" value="0">
 								</label>
 								<label >Реальная зарплата охранника по отрасли (2/2, 4/4 и т.д.)
-									<input class="add-data" id="salaryChart" type="number">
+									<input class="add-data" id="salaryChart" type="number" value="0">
 								</label>
-								<textarea class="add-data" name="" id="objNote" cols="300" rows="10" wrap="hard"></textarea>
+								<textarea class="add-data" name="" id="objNote" cols="300" rows="10" wrap="hard" value="Примечаний нет"></textarea>
 							</div>
 						</div>
 					</div>
@@ -132,6 +132,8 @@
 			<div class="card">
 				<p class="card__close">Закрыть</p>
 				<div class="dataset-card">
+					<p class="header">Проложение №____</p>
+					<p class="header">К договору услуг охраны №___ от "__" _________ 20___г.</p>
 					<h1 class="dataset__title">СМЕТА РАСХОДОВ</h1>
 					<p class="dataset__subtitle">по предоставлению охранных услуг по объекту (посту)</p>
 					<p class="obj__name"></p>
@@ -141,6 +143,15 @@
 					<p class="salary__chart"></p>
 					<table class="dataset__table-card">
 					</table>
+					<p class="dataset__title">Подписи сторон</p>
+					<div class="subscribe">
+						<div class="subscribe__item">
+							<p>Исполнитель:</p>
+						</div>
+						<div class="subscribe__item">
+							<p>Заказчик:</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
