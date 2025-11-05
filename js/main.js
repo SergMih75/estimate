@@ -1,4 +1,4 @@
-const navBtn = document.querySelectorAll('.nav__btn')
+﻿const navBtn = document.querySelectorAll('.nav__btn')
 const popup = document.querySelector('.popup')
 const addBtn = document.querySelector('.add__btn')
 const editData = document.querySelector('.edit__data')
@@ -31,7 +31,7 @@ function datasetRender(dataGet) {
 
 	let headRow = document.createElement('tr')
 	headRow.innerHTML = `
-        <th>#</th>
+        <th>id</th>
 		<th>Объект (пост) охраны</th>
 		<th>Адрес</th>
 		<th>Контактное лицо</th>

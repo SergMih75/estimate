@@ -173,3 +173,15 @@
 #key_id {
     display: none;
 }
+
+.copyright {
+padding: 10px;
+border: 1px solid #000;
+width: 90%;margin: 0 auto;
+}
+
+.copyright__text {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
