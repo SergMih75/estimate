@@ -185,3 +185,19 @@ width: 90%;margin: 0 auto;
     font-weight: 400;
     text-align: center;
 }
+
+.copyright__text-holder {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 900;
+    color: #000;
+    text-align: center;
+}
+
+.copyright__text-sub {
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 200;
+    font-style: oblique;
+    text-align: left;
+}
